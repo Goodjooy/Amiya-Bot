@@ -11,7 +11,7 @@ from modules.config import get_config
 
 
 class Reply:
-    def __init__(self, content, feeling=2, sign=0, coupon=0, at=True, auto_image=True):
+    def __init__(self, content, feeling=2, sign=0, coupon=0, at=True, auto_image=False):
 
         self.config = get_config()
         self.auto_image = auto_image

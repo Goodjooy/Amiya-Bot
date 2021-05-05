@@ -19,9 +19,12 @@ class HttpRequests:
         self.config = config
 
     def url(self, interface):
+        # http://miraiHost:miraiPost/API
+        # 生成向mirai的端口请求的url
         return 'http://%s:%d/%s' % (self.config['server']['server_ip'], self.config['server']['server_port'], interface)
 
     def post(self, interface, data):
+
         response = self.request.post(self.url(interface), data=json.dumps(data), headers={
             'Content-Type': 'application/json'
         })
@@ -36,9 +39,11 @@ class HttpRequests:
         return False
 
     def init_session(self):
+        # 向mirai服务器发送请求AUTH信息，提取session
         response = self.post('auth', {'authKey': config['server']['auth_key']})
         session = response['session']
 
+        # 获取最新的session信息，并保存到文件
         session_record = self.get_session()
         if session_record:
             self.post('release', {'sessionKey': session_record, 'qq': self_id})

@@ -24,6 +24,14 @@ class MessageHandler(HttpRequests):
         super().__init__()
 
     def on_message(self, message):
+        """
+        信息接受管理器
+        {
+        "type"->信息类型[GroupMessage#群消息, FriendMessage#好友消息]
+        }
+        :param message: 输入的信息【类型： dict】
+        :return:
+        """
 
         # 过滤未知的消息
         if 'type' not in message:
@@ -180,3 +188,14 @@ class MessageHandler(HttpRequests):
                 data['image'] = chain['url'].strip()
 
         return data
+
+class MessageContainer(object):
+    def __init__(self,message:dict):
+        self.text=""
+        self.text_digits=""
+        self.text_pinyin= ''
+
+        self.user_id=message["sender"]["id"]
+        self.is_at=False
+
+

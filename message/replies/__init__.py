@@ -7,6 +7,7 @@ from .waiting import waiting
 from .greeting import greeting
 from .faceImage import face_image
 from .adminForGroup import group_admin
+from .repeater import repeat
 from .nlp import natural_language_processing
 
 function = FunctionsIndex()
@@ -61,6 +62,10 @@ def reply_func_list(data):
                 # 自然语言处理
                 'func': natural_language_processing,
                 'need_call': True
+            }, {
+                # 复读机
+                'func': repeat,
+                'need_call': False
             }
         ]
     else:
